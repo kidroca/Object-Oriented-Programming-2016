@@ -11,11 +11,11 @@
     [Serializable]
     public class Path : IPath
     {
-        private readonly Stack<IPoint3D> pointsInPath;
+        private readonly List<IPoint3D> pointsInPath;
 
         public Path()
         {
-            this.pointsInPath = new Stack<IPoint3D>();
+            this.pointsInPath = new List<IPoint3D>();
         }
 
         public Path(params IPoint3D[] list)
@@ -27,6 +27,8 @@
             }
         }
 
+        public int Length => this.pointsInPath.Count;
+
         public IEnumerable<IPoint3D> PointsInPath => this.pointsInPath;
 
         public void AddPoint(IPoint3D point)
@@ -36,12 +38,19 @@
                 throw new ArgumentException("Invalid point object");
             }
 
-            this.pointsInPath.Push(point);
+            this.pointsInPath.Add(point);
         }
 
         public IPoint3D RemoveLastPoint()
         {
-            var point = this.pointsInPath.Pop();
+            IPoint3D point = null;
+
+            if (this.Length > 0)
+            {
+                point = this.pointsInPath[this.Length - 1];
+                this.pointsInPath.RemoveAt(this.Length - 1);
+            }
+
             return point;
         }
     }
