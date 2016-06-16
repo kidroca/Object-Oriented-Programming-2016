@@ -1,4 +1,4 @@
-﻿namespace DefiningClassesHomework.EuclidianSpance.Functionality
+﻿namespace DefiningClassesHomework.EuclideanSpace.Functionality
 {
     using System;
     using Models;
@@ -8,7 +8,7 @@
     /// Write a static class with a static method to calculate the 
     ///     distance between two points in the 3D space.
     /// </summary>
-    public static class EuclidianSpaceMethods
+    public static class EuclideanSpaceMethods
     {
         public static double DistanceBetweenPoints(Point3D p, Point3D q)
         {

@@ -7,7 +7,7 @@
     <ProjectGuid>{8B96BBD8-C195-4F89-9A8D-9D81C84FEC5B}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DefiningClassesHomework.EuclidianSpance</RootNamespace>
+    <RootNamespace>DefiningClassesHomework.EuclideanSpace</RootNamespace>
     <AssemblyName>Defining Classes Homework 2</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -32,8 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ConsoleMio, Version=1.0.6008.31470, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ConsoleMio.1.0.6008.31470\lib\net40\ConsoleMio.dll</HintPath>
+    <Reference Include="ConsoleMio, Version=1.0.6011.18336, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ConsoleMio.1.0.6011.18336\lib\net40\ConsoleMio.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

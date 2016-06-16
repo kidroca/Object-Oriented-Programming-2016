@@ -1,4 +1,4 @@
-﻿namespace DefiningClassesHomework.EuclidianSpance.Models
+﻿namespace DefiningClassesHomework.EuclideanSpace.Models
 {
     using System;
     using Models.Contracts;
@@ -6,7 +6,7 @@
     /// <summary>
     /// Problem 1. Structure
     /// Create a structure Point3D to hold a 3D-coordinate {X, Y, Z} 
-    ///     in the Euclidian 3D space.
+    ///     in the Euclidean 3D space.
     /// </summary>
     [Serializable]
     public struct Point3D : IPoint3D

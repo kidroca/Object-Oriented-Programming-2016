@@ -1,4 +1,4 @@
-namespace DefiningClassesHomework.EuclidianSpance.Models.Contracts
+namespace DefiningClassesHomework.EuclideanSpace.Models.Contracts
 {
     using System.Collections.Generic;
 

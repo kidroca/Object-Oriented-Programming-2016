@@ -14,7 +14,7 @@
  * Create a static class PathStorage with static methods to save and load paths from a text file.
  * Use a file format of your choice. */
 
-namespace DefiningClassesHomework.EuclidianSpance
+namespace DefiningClassesHomework.EuclideanSpace
 {
     using System;
     using ConsoleMio.ConsoleEnhancements;
@@ -30,25 +30,25 @@ namespace DefiningClassesHomework.EuclidianSpance
 
         private static void Main()
         {
-            ConsoleMio.PrintHeading("Homework: Defining Classes - Part 2 ");
+            ConsoleMio.PrintHeading("Homework: Defining Classes - Part 2");
 
             var startPoint = new Point3D(12, 2, 1);
             ConsoleMio
                 .Write("Creating a start point: ", color: Info)
-                .WriteLine(startPoint.ToString(), color: Result)
-                .WriteLine(string.Empty, color: Result);
+                .WriteLine(startPoint, color: Result)
+                .WriteLine();
 
             var destinationPoint = new Point3D(3003232, 512312374, 1);
             ConsoleMio
                 .Write("Creating a destination point: ", color: Info)
-                .WriteLine(destinationPoint.ToString(), color: Result)
-                .WriteLine(string.Empty, color: Result);
+                .WriteLine(destinationPoint, color: Result)
+                .WriteLine();
 
-            var distance = EuclidianSpaceMethods.DistanceBetweenPoints(startPoint, destinationPoint);
+            var distance = EuclideanSpaceMethods.DistanceBetweenPoints(startPoint, destinationPoint);
             ConsoleMio
                 .Write("Distance between points: ", color: Info)
-                .WriteLine(distance.ToString(), color: Result)
-                .WriteLine(string.Empty, color: Result);
+                .WriteLine(distance, color: Result)
+                .WriteLine();
 
 
             var sampleRout = new Path(startPoint, destinationPoint);
@@ -59,14 +59,14 @@ namespace DefiningClassesHomework.EuclidianSpance
                 .WriteLine("Saving route to disk...", color: Info)
                 .WriteLine("Loading the route from disk...", color: Info)
                 .WriteLine("Printing the points in the stored route: ", Info)
-                .WriteLine(string.Empty, color: Result);
+                .WriteLine();
 
             foreach (var point in loadedRout.PointsInPath)
             {
                 ConsoleMio.FormatLine("\t{0}", color: Result, args: point);
             }
 
-            ConsoleMio.WriteLine(string.Empty, color: Result);
+            ConsoleMio.WriteLine();
         }
     }
 }

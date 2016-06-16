@@ -1,4 +1,4 @@
-﻿namespace DefiningClassesHomework.EuclidianSpance.Models
+﻿namespace DefiningClassesHomework.EuclideanSpace.Models
 {
     using System;
     using System.Collections.Generic;

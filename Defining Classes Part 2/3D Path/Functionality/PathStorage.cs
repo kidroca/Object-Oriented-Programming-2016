@@ -1,4 +1,4 @@
-﻿namespace DefiningClassesHomework.EuclidianSpance.Functionality
+﻿namespace DefiningClassesHomework.EuclideanSpace.Functionality
 {
     using System.IO;
     using System.Runtime.Serialization.Formatters.Binary;
