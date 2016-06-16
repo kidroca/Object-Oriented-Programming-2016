@@ -30,7 +30,7 @@ namespace DefiningClassesHomework.EuclideanSpace
 
         private static void Main()
         {
-            ConsoleMio.PrintHeading("Homework: Defining Classes - Part 2");
+            ConsoleMio.PrintHeading("Homework: Defining Classes Part 2 - Euclidean Space");
 
             var startPoint = new Point3D(12, 2, 1);
             ConsoleMio

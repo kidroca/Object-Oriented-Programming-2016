@@ -14,42 +14,175 @@
  * element in the GenericList<T>.
  * You may need to add a generic constraints for the type T. */
 
-namespace DefiningClassesHomework2
+namespace SuperLists
 {
     using System;
+    using ConsoleMio.ConsoleEnhancements;
 
     public class TestGenericList
     {
-        private static void Main(string[] args)
+        private const ConsoleColor Info = ConsoleColor.DarkRed;
+        private const ConsoleColor Result = ConsoleColor.DarkBlue;
+        private const ConsoleColor Pause = ConsoleColor.Black;
+
+        private static readonly ConsoleMio ConsoleMio = new ConsoleMio();
+
+        private static void Main()
         {
-            var intcho = new GenericList<int>();
-            Console.WriteLine(intcho.Count);
-            intcho.Add(5, 8, 23, 1, 45, 45, 46, 56, 1, 10, 78);
-            Console.WriteLine(intcho.Count);
-            intcho[11] = 2394;
-            intcho[12] = 194;
+            ConsoleMio.PrintHeading("Homework: Defining Classes Part 2 - Generic Class");
 
-            intcho.Add(90, 100, 101, 102);
-            Console.WriteLine(intcho.Count);
+            GenericList<int> intList = CreateIntList();
 
-            // intcho.Clear();
+            InitNumbers(intList);
+            ChangeValue(intList, 5, 2000);
+            AddNumbers(intList);
+            TestInsertAt(intList, 2, -123);
+            TestRemoveAt(intList, 0);
+            ShowMax(intList);
+            ShowMin(intList);
+            TestIndexOf(intList, 100);
+            TestIndexOf(intList, -100);
+        }
 
-            intcho.Add(new int[] { 1, 2, 3 });
-            intcho.RemoveAt(19);
-            intcho.InsertAt(19, 23);
-                        
-            for (int i = 0; i < intcho.Count; i++)
-            {
-                Console.WriteLine("{0}: {1}", i, intcho[i]);
-            }
+        private static void PromtToContinue()
+        {
+            ConsoleMio
+                .WriteLine("Press a key to proceed", color: Pause)
+                .WriteLine();
+            Console.ReadKey(true);
+        }
 
-            Console.WriteLine();
-            Console.WriteLine(intcho.Min());
-            Console.WriteLine(intcho.Max());
+        private static void PrintList<T>(GenericList<T> list) where T : IComparable<T>
+        {
+            ConsoleMio
+                .Write("List size: ", color: Info)
+                .WriteLine(list.Count, color: Result)
+                .WriteLine(list, color: Result)
+                .WriteLine();
+        }
 
-            Console.WriteLine(intcho.IndexOf(1));
+        private static void TestIndexOf<T>(GenericList<T> list, T value) where T : IComparable<T>
+        {
+            ConsoleMio
+               .Format("Looking up index of {0}: ", color: Info, args: value)
+               .WriteLine(list.IndexOf(value), color: Result)
+               .WriteLine();
 
-            Console.WriteLine(intcho);
+            PrintList(list);
+            PromtToContinue();
+        }
+
+        private static void ShowMin<T>(GenericList<T> list) where T : IComparable<T>
+        {
+            ConsoleMio
+                .Write("Min Value: ", color: Info)
+                .WriteLine(list.Min(), color: Result)
+                .WriteLine();
+
+            PrintList(list);
+            PromtToContinue();
+        }
+
+        private static void ShowMax<T>(GenericList<T> list) where T : IComparable<T>
+        {
+            ConsoleMio
+                .Write("Max Value: ", color: Info)
+                .WriteLine(list.Max(), color: Result)
+                .WriteLine();
+
+            PrintList(list);
+            PromtToContinue();
+        }
+
+        private static void TestInsertAt<T>(GenericList<T> lsit, int index, T value) where T : IComparable<T>
+        {
+            ConsoleMio
+                .Write("Inserting ", color: Info)
+                .Write(value, color: Result)
+                .Write(" at index ", color: Info)
+                .WriteLine(index, color: Result)
+                .WriteLine();
+
+            lsit.InsertAt(2, value);
+            PrintList(lsit);
+            PromtToContinue();
+        }
+
+        private static void TestRemoveAt<T>(GenericList<T> intList, int index) where T : IComparable<T>
+        {
+            ConsoleMio
+                .Write("Removing at index ", color: Info)
+                .Write(index, color: Result)
+                .WriteLine();
+
+            intList.RemoveAt(index);
+            PrintList(intList);
+            PromtToContinue();
+        }
+
+        private static void AddNumbers(GenericList<int> intList)
+        {
+            intList.Add(90, 100, 101, 102);
+            ConsoleMio
+                .Write("Adding ", color: Info)
+                .Write("90, 100, 101, 102", color: Result)
+                .WriteLine(" To the list", color: Info)
+                .Write("New size: ", color: Info)
+                .WriteLine(intList.Count, color: Result)
+                .WriteLine();
+
+            PrintList(intList);
+            PromtToContinue();
+        }
+
+        private static void ChangeValue<T>(GenericList<T> intList, int index, T value)
+            where T : IComparable<T>
+        {
+            intList[index] = value;
+
+            ConsoleMio
+                .Write("Changing element value at index ", color: Info)
+                .Write(index, color: Result)
+                .Write(" to ", color: Info)
+                .WriteLine(value, color: Result)
+                .WriteLine();
+
+            PrintList(intList);
+            PromtToContinue();
+        }
+
+        private static GenericList<int> CreateIntList()
+        {
+            ConsoleMio
+                .Write("Creating a new GenericList<", color: Info)
+                .Write("int", color: Result)
+                .WriteLine(">", color: Info)
+                .WriteLine();
+
+            var intList = new GenericList<int>();
+            ConsoleMio
+                .Write("Initial size: ", color: Info)
+                .WriteLine(intList.Count, color: Result)
+                .WriteLine();
+
+            PromtToContinue();
+
+            return intList;
+        }
+
+        private static void InitNumbers(GenericList<int> intList)
+        {
+            int[] numbers = { 5, 8, 23, 1, 45, 45, 46, 56 };
+            intList.Add(numbers);
+            ConsoleMio
+                .Write("Adding elements [", color: Info)
+                .Write(string.Join(", ", numbers), color: Result)
+                .WriteLine("]", color: Info)
+                .WriteLine();
+
+
+            PrintList(intList);
+            PromtToContinue();
         }
     }
 }

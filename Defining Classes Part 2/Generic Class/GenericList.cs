@@ -1,4 +1,4 @@
-﻿namespace DefiningClassesHomework2
+﻿namespace SuperLists
 {
     using System;
     using System.Collections;
@@ -7,14 +7,14 @@
 
     public class GenericList<T> : IList<T> where T : IComparable<T>
     {
-        private const int InitialSize = 8;
-        private T[] elements;
-        private int nextIndex;
+        private readonly int initialCapacity;
 
-        public GenericList()
+        private T[] elements;
+
+        public GenericList(int initialCapacity = 8)
         {
-            this.Length = InitialSize;
-            this.elements = new T[InitialSize];
+            this.initialCapacity = initialCapacity;
+            this.elements = new T[initialCapacity];
             this.Count = 0;
         }
 
@@ -30,78 +30,49 @@
             return false;
         }
 
-        public int Count
-        {
-            get
-            {
-                return this.nextIndex;
-            }
-
-            private set
-            {
-                if (value == this.Length)
-                {
-                    var length = this.Length * 2;
-                    var newElements = new T[length];
-
-                    for (int i = 0; i < this.Length; i++)
-                    {
-                        newElements[i] = this.elements[i];
-                    }
-
-                    this.elements = newElements;
-                    this.nextIndex = this.Length;
-                    this.Length = length;
-                }
-                else
-                {
-                    this.nextIndex = value;
-                }
-            }
-        }
+        public int Count { get; private set; }
 
         public bool IsReadOnly => false;
-
-        private int Length { get; set; }
 
         public T this[int index]
         {
             get
             {
-                if (index < 0 || index >= this.Count)
-                {
-                    throw new IndexOutOfRangeException("Requested index: " + index + " is outside the bounds of the collection");
-                }
-
+                this.ValidateIndex(index);
                 return this.elements[index];
             }
 
             set
             {
-                if (index < 0 || index > this.Count)
-                {
-                    throw new IndexOutOfRangeException("Requested index: " + index + " is outside the bounds of the collection");
-                }
-                else if (index == this.Count)
-                {
-                    this.Count++;
-                }
-
+                this.ValidateIndex(index);
                 this.elements[index] = value;
             }
         }
 
+        public override string ToString()
+        {
+            var strBuilder = new StringBuilder();
+            for (int i = 0; i < this.Count; i++)
+            {
+                strBuilder.AppendLine($"[{i}]: {this.elements[i]}");
+            }
+
+            strBuilder.Remove(strBuilder.Length - 1, 1);
+
+            return strBuilder.ToString();
+        }
+
         public void Add(T element)
         {
-            this.elements[this.Count] = element;
-            this.Count++;
+            this.ExpandIfNeedBe();
+            this.elements[this.Count++] = element;
         }
 
         public void Add(params T[] list)
         {
-            for (int i = 0; i < list.Length; i++)
+            foreach (T item in list)
             {
-                this.Add(list[i]);
+                this.Add(item);
             }
         }
 
@@ -125,98 +96,37 @@
 
         public void RemoveAt(int index)
         {
-            if (index < 0 || index >= this.Count)
-            {
-                throw new IndexOutOfRangeException();
-            }
+            this.ValidateIndex(index);
+            this.Count--;
 
-            T[] elementsBeforeIndex;
+            var newElements = new T[this.elements.Length];
+            Array.Copy(this.elements, newElements, index);
 
-            if (index != 0)
-            {
-                elementsBeforeIndex = new T[index];
-                Array.Copy(this.elements, 0, elementsBeforeIndex, 0, index);
-            }
-            else
-            {
-                elementsBeforeIndex = new T[0];
-            }
+            int remainingLength = this.elements.Length - index - 1;
+            Array.Copy(this.elements, index + 1, newElements, index, remainingLength);
 
-            T[] elementsAfterIndex;
-
-            if (index != this.Count - 1)
-            {
-                elementsAfterIndex = new T[this.Count - index - 1];
-                Array.Copy(this.elements, index + 1, elementsAfterIndex, 0, this.Count - index - 1);
-            }
-            else
-            {
-                elementsAfterIndex = new T[0];
-            }
-
-            this.Clear();
-
-            if (index != 0)
-            {
-                this.Add(elementsBeforeIndex);
-            }
-
-            if (index != this.Count - 1)
-            {
-                this.Add(elementsAfterIndex);
-            }
+            this.elements = newElements;
         }
 
         public void InsertAt(int index, T element)
         {
-            if (index < 0 || index > this.Count)
-            {
-                throw new IndexOutOfRangeException();
-            }
+            this.ValidateIndex(index);
+            this.ExpandIfNeedBe();
+            this.Count++;
 
-            T[] elementsBeforeIndex;
+            var newElements = new T[this.elements.Length];
+            Array.Copy(this.elements, newElements, index);
+            newElements[index] = element;
 
-            if (index != 0)
-            {
-                elementsBeforeIndex = new T[index];
-                Array.Copy(this.elements, 0, elementsBeforeIndex, 0, index);
-            }
-            else
-            {
-                elementsBeforeIndex = new T[0];
-            }
+            int remainingLength = newElements.Length - index - 1;
+            Array.Copy(this.elements, index, newElements, index + 1, remainingLength);
 
-            T[] elementsAfterIndex;
-
-            if (index != this.Count)
-            {
-                elementsAfterIndex = new T[this.Count - index - 1];
-                Array.Copy(this.elements, index + 1, elementsAfterIndex, 0, this.Count - index - 1);
-            }
-            else
-            {
-                elementsAfterIndex = new T[0];
-            }
-
-            this.Clear();
-
-            if (index != 0)
-            {
-                this.Add(elementsBeforeIndex);
-            }
-
-            this.Add(element);
-
-            if (index != this.Count)
-            {
-                this.Add(elementsAfterIndex);
-            }
+            this.elements = newElements;
         }
 
         public void Clear()
         {
-            this.Length = InitialSize;
-            this.elements = new T[InitialSize];
+            this.elements = new T[this.initialCapacity];
             this.Count = 0;
         }
 
@@ -233,9 +143,20 @@
             return false;
         }
 
+        /// <summary>
+        /// Copies all elements of this list onto the given array starting from 
+        /// the specified <paramref name="arrayIndex"/>
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="arrayIndex"></param>
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            if (array.Length - arrayIndex - 1 < this.Count)
+            {
+                throw new InvalidOperationException("The operation will result in index out of range");
+            }
+
+            Array.Copy(this.elements, 0, array, arrayIndex, this.Count);
         }
 
         public T Min()
@@ -270,28 +191,36 @@
 
         public IEnumerator<T> GetEnumerator()
         {
-            for (int i = 0; i < this.Length; i++)
+            for (int i = 0; i < this.Count; i++)
             {
                 yield return this.elements[i];
             }
         }
 
-        public override string ToString()
-        {
-            var strBuilder = new StringBuilder();
-            for (int i = 0; i < this.Count; i++)
-            {
-                strBuilder.AppendLine($"[{i}]: {this.elements[i]}");
-            }
-
-            strBuilder.Remove(strBuilder.Length - 1, 1);
-
-            return strBuilder.ToString();
-        }
-
         IEnumerator IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();
+        }
+
+        private void ExpandIfNeedBe()
+        {
+            if (this.Count == this.elements.Length)
+            {
+                var newSize = this.elements.Length * 2;
+                var newElements = new T[newSize];
+                Array.Copy(this.elements, newElements, this.elements.Length);
+
+                this.elements = newElements;
+            }
+        }
+
+        private void ValidateIndex(int index)
+        {
+            if (index < 0 || index >= this.Count)
+            {
+                throw new IndexOutOfRangeException(
+                    $"Requested index: {index} is outside the bounds of the collection");
+            }
         }
     }
 }

@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Functionality\EuclidianSpaceMethods.cs" />
+    <Compile Include="Functionality\EuclideanSpaceMethods.cs" />
     <Compile Include="Models\Contracts\IPath.cs" />
     <Compile Include="Models\Contracts\IPoint3D.cs" />
     <Compile Include="StartUp.cs" />
