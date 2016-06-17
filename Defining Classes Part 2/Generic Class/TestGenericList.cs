@@ -44,14 +44,6 @@ namespace SuperLists
             TestIndexOf(intList, -100);
         }
 
-        private static void PromtToContinue()
-        {
-            ConsoleMio
-                .WriteLine("Press a key to proceed", color: Pause)
-                .WriteLine();
-            Console.ReadKey(true);
-        }
-
         private static void PrintList<T>(GenericList<T> list) where T : IComparable<T>
         {
             ConsoleMio
@@ -69,7 +61,7 @@ namespace SuperLists
                .WriteLine();
 
             PrintList(list);
-            PromtToContinue();
+            ConsoleMio.PromptToContinue(color: Pause);
         }
 
         private static void ShowMin<T>(GenericList<T> list) where T : IComparable<T>
@@ -80,7 +72,7 @@ namespace SuperLists
                 .WriteLine();
 
             PrintList(list);
-            PromtToContinue();
+            ConsoleMio.PromptToContinue(color: Pause);
         }
 
         private static void ShowMax<T>(GenericList<T> list) where T : IComparable<T>
@@ -91,7 +83,7 @@ namespace SuperLists
                 .WriteLine();
 
             PrintList(list);
-            PromtToContinue();
+            ConsoleMio.PromptToContinue(color: Pause);
         }
 
         private static void TestInsertAt<T>(GenericList<T> lsit, int index, T value) where T : IComparable<T>
@@ -105,7 +97,7 @@ namespace SuperLists
 
             lsit.InsertAt(2, value);
             PrintList(lsit);
-            PromtToContinue();
+            ConsoleMio.PromptToContinue(color: Pause);
         }
 
         private static void TestRemoveAt<T>(GenericList<T> intList, int index) where T : IComparable<T>
@@ -117,7 +109,7 @@ namespace SuperLists
 
             intList.RemoveAt(index);
             PrintList(intList);
-            PromtToContinue();
+            ConsoleMio.PromptToContinue(color: Pause);
         }
 
         private static void AddNumbers(GenericList<int> intList)
@@ -132,7 +124,7 @@ namespace SuperLists
                 .WriteLine();
 
             PrintList(intList);
-            PromtToContinue();
+            ConsoleMio.PromptToContinue(color: Pause);
         }
 
         private static void ChangeValue<T>(GenericList<T> intList, int index, T value)
@@ -148,7 +140,7 @@ namespace SuperLists
                 .WriteLine();
 
             PrintList(intList);
-            PromtToContinue();
+            ConsoleMio.PromptToContinue(color: Pause);
         }
 
         private static GenericList<int> CreateIntList()
@@ -165,7 +157,7 @@ namespace SuperLists
                 .WriteLine(intList.Count, color: Result)
                 .WriteLine();
 
-            PromtToContinue();
+            ConsoleMio.PromptToContinue(color: Pause);
 
             return intList;
         }
@@ -182,7 +174,7 @@ namespace SuperLists
 
 
             PrintList(intList);
-            PromtToContinue();
+            ConsoleMio.PromptToContinue(color: Pause);
         }
     }
 }

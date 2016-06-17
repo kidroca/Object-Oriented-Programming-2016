@@ -18,5 +18,10 @@
         public int Major { get; }
 
         public int Minor { get; }
+
+        public override string ToString()
+        {
+            return $"{this.Major}.{this.Minor}";
+        }
     }
 }

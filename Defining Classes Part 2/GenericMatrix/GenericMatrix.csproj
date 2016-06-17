@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ConsoleMio, Version=1.0.6012.19239, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ConsoleMio.1.0.6012.19239\lib\net40\ConsoleMio.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,11 +48,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Matrix.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="TestMatrices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VersionAttribute\VersionAttribute.csproj">
+      <Project>{7b47ea0f-6dba-4074-9b4a-b68487c1166a}</Project>
+      <Name>VersionAttribute</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

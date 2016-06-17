@@ -32,8 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ConsoleMio, Version=1.0.6011.18336, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ConsoleMio.1.0.6011.18336\lib\net40\ConsoleMio.dll</HintPath>
+    <Reference Include="ConsoleMio, Version=1.0.6012.19239, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ConsoleMio.1.0.6012.19239\lib\net40\ConsoleMio.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
