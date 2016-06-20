@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Timers;
 
     /**
@@ -16,13 +17,13 @@
 
         private readonly Timer timer;
 
-        private readonly ICollection<Action> oneOffs;
+        private readonly ICollection<Action> oneTimeActions;
 
         public HomeworkTimer()
         {
             this.timer = new Timer { Interval = 1000 };
             this.timer.Elapsed += this.OnOneSecond;
-            this.oneOffs = new HashSet<Action>();
+            this.oneTimeActions = new HashSet<Action>();
         }
 
         public bool IsRunning => this.timer.Enabled;
@@ -51,34 +52,41 @@
 
         public HomeworkTimer SubscribeOnce(Action callback)
         {
-            this.oneOffs.Add(callback);
-            this.Subscribe(callback);
+            this.oneTimeActions.Add(callback);
             return this;
         }
 
         public HomeworkTimer Unsubscribe(Action callback)
         {
             this.OneSecond -= callback;
-            this.oneOffs.Remove(callback);
+            this.oneTimeActions.Remove(callback);
             return this;
         }
 
         protected virtual void OnOneSecond(object sender, ElapsedEventArgs elapsedEventArgs)
         {
             this.OneSecond?.Invoke();
-            this.UnsubscribeOneOffs();
+            this.FireOneTimeActions();
         }
 
-        private void UnsubscribeOneOffs()
+        private void FireOneTimeActions()
         {
-            if (this.oneOffs.Count > 0)
+            if (this.oneTimeActions.Count == 0)
             {
-                foreach (var action in this.oneOffs)
-                {
-                    this.OneSecond -= action;
-                }
+                return;
+            }
 
-                this.oneOffs.Clear();
+            Action[] actions;
+
+            lock (this.oneTimeActions)
+            {
+                actions = this.oneTimeActions.ToArray();
+                this.oneTimeActions.Clear();
+            }
+
+            foreach (var action in actions)
+            {
+                action();
             }
         }
     }
