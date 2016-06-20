@@ -1,18 +1,12 @@
 ﻿namespace Telerik.Homeworks.OOP.Principles
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
     public abstract class Human
     {
         private string firstName;
 
         private string lastName;
 
-        public Human(string fname, string lname)
+        protected Human(string fname, string lname)
         {
             this.FirstName = fname;
             this.LastName = lname;
@@ -25,9 +19,9 @@
                 return this.firstName;
             }
 
-            protected set
+            private set
             {
-                string name = Validator.ValidateName(value);
+                string name = Validator.Validator.ValidateName(value);
 
                 this.firstName = name;
             }
@@ -40,9 +34,9 @@
                 return this.lastName;
             }
 
-            protected set
+            private set
             {
-                string name = Validator.ValidateName(value);
+                string name = Validator.Validator.ValidateName(value);
 
                 this.lastName = name;
             }
@@ -50,7 +44,7 @@
 
         public override string ToString()
         {
-            return string.Format("First Name: '{0}' \r\nLastName: '{1}'", this.FirstName, this.LastName);
+            return $"First Name: '{this.FirstName}' \r\nLastName: '{this.LastName}'";
         }
     }
 }

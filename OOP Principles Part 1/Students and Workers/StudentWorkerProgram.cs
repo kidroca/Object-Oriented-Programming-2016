@@ -3,20 +3,17 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
-    class StudentWorkerProgram
+    internal class StudentWorkerProgram
     {
+        private static readonly Random Rnd = new Random();
 
-        private static Random rnd = new Random();
-
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var students = new List<Student>();
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
-                var someGuy = new Student("Robot", "Number: " + (i + 1).ToString(), (uint)rnd.Next(1, 10));
+                var someGuy = new Student("Robot", "Number: " + (i + 1), (uint)Rnd.Next(1, 10));
                 students.Add(someGuy);
             }
 
@@ -32,9 +29,9 @@
             Console.WriteLine();
 
             var workers = new List<Worker>();
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
-                var workingJoe = new Worker("Andro", "Count: " + (i + 1), rnd.Next(15, 1000), (uint)rnd.Next(1, 8));
+                var workingJoe = new Worker("Andro", "Count: " + (i + 1), Rnd.Next(15, 1000), (uint)Rnd.Next(1, 8));
                 workers.Add(workingJoe);
             }
 

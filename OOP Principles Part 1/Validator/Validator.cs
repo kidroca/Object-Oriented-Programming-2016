@@ -1,4 +1,4 @@
-﻿namespace Telerik.Homeworks.OOP.Principles
+﻿namespace Telerik.Homeworks.OOP.Principles.Validator
 {
     using System;
 
@@ -12,19 +12,19 @@
         {
             if (value == null)
             {
-                throw new ArgumentNullException("A person name cannot be null");
+                throw new ArgumentNullException(nameof(value), "A person name cannot be null");
             }
 
             value = value.Trim();
 
             if (value.Length < MinNameLength)
             {
-                throw new ArgumentOutOfRangeException("The given name is too short");
+                throw new ArgumentOutOfRangeException(nameof(value), "The given name is too short");
             }
 
             if (value.Length > MaxNameLength)
             {
-                throw new ArgumentOutOfRangeException("The given name is too long");
+                throw new ArgumentOutOfRangeException(nameof(value), "The given name is too long");
             }
 
             return value;

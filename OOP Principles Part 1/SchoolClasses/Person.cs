@@ -21,7 +21,7 @@
 
             protected set
             {
-                string name = Validator.ValidateName(value);
+                string name = Validator.Validator.ValidateName(value);
 
                 this.firstName = name;
             }
@@ -36,7 +36,7 @@
 
             protected set
             {
-                string name = Validator.ValidateName(value);
+                string name = Validator.Validator.ValidateName(value);
 
                 this.lastName = name;
             }

@@ -2,50 +2,42 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
+    using System.Linq;
 
     public class Teacher : Person
     {
-        private List<Discipline> disciplines;
-
         public Teacher(string fname, string lname)
             : base(fname, lname)
         {
-            this.disciplines = new List<Discipline>();
-            this.Disciplines = this.disciplines.AsReadOnly();
+            this.Disciplines = new HashSet<Discipline>();
         }
 
-        public Teacher(string fname, string lname, List<Discipline> disciplines)
+        public Teacher(string fname, string lname, IEnumerable<Discipline> disciplines)
             : base(fname, lname)
         {
-            this.disciplines = disciplines;
-            this.Disciplines = this.disciplines.AsReadOnly();
+            this.Disciplines = new HashSet<Discipline>(disciplines);
         }
 
-        public ReadOnlyCollection<Discipline> Disciplines { get; private set; }
+        public ICollection<Discipline> Disciplines { get; }
 
         public Comment Comment { get; set; }
 
         public void AddDisciplines(Discipline subject)
         {
-            this.disciplines.Add(subject);
+            this.Disciplines.Add(subject);
         }
 
-        public void RemoveDiscipline(string name)
+        public Discipline RemoveDiscipline(string name)
         {
-            int index = this.disciplines.FindIndex(d => d.Name == name);
+            var discipline = this.Disciplines.FirstOrDefault(d => d.Name.Equals(name, StringComparison.Ordinal));
+            this.RemoveDiscipline(discipline);
 
-            if (index == -1)
-            {
-                throw new ArgumentException("The discipline name could not be found in this teacher's Disciplines");
-            }
-
-            this.disciplines.RemoveAt(index);
+            return discipline;
         }
 
         public void RemoveDiscipline(Discipline subject)
         {
-            bool success = this.disciplines.Remove(subject);
+            bool success = this.Disciplines.Remove(subject);
 
             if (!success)
             {

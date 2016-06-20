@@ -4,10 +4,6 @@
     {
         private string name;
 
-        private uint numberOfLectures;
-
-        private uint numberOfExercises;
-
         public Discipline(string name)
         {
             this.Name = name;
@@ -22,7 +18,7 @@
 
             set
             {
-                Validator.ValidateName(value);
+                Validator.Validator.ValidateName(value);
 
                 this.name = value;
             }
