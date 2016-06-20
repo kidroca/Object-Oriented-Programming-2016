@@ -44,7 +44,7 @@
 
             foreach (var w in workers)
             {
-                Console.WriteLine(w); 
+                Console.WriteLine(w);
             }
 
             Console.WriteLine();

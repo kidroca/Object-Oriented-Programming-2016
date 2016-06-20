@@ -28,7 +28,7 @@
             protected set
             {
                 string name = Validator.ValidateName(value);
-                
+
                 this.firstName = name;
             }
         }

@@ -6,7 +6,7 @@
 
         private string lastName;
 
-        public Person(string fname, string lname)
+        protected Person(string fname, string lname)
         {
             this.FirstName = fname;
             this.LastName = lname;
@@ -21,7 +21,7 @@
 
             protected set
             {
-                string name = Validator.ValidateName(value); 
+                string name = Validator.ValidateName(value);
 
                 this.firstName = name;
             }
@@ -36,7 +36,7 @@
 
             protected set
             {
-               string name = Validator.ValidateName(value);
+                string name = Validator.ValidateName(value);
 
                 this.lastName = name;
             }

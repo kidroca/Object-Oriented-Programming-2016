@@ -29,6 +29,5 @@
         }
 
         public Comment Comment { get; set; }
-
     }
 }

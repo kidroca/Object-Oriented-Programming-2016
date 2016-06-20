@@ -2,7 +2,7 @@
 {
     public class Student : Person
     {
-        public Student(string fname, string lname) 
+        public Student(string fname, string lname)
             : base(fname, lname)
         {
         }

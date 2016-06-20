@@ -32,7 +32,6 @@
             set
             {
                 // validate
-
                 this.grade = value;
             }
         }
