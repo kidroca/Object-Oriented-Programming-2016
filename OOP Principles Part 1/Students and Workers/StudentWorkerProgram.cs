@@ -3,48 +3,33 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using ConsoleMio.ConsoleEnhancements;
+    using Generators;
 
     internal class StudentWorkerProgram
     {
-        private static readonly Random Rnd = new Random();
+        private const ConsoleColor Info = ConsoleColor.Blue;
+        private const ConsoleColor Result = ConsoleColor.DarkRed;
+
+        private static readonly ConsoleMio ConsoleMio = new ConsoleMio();
+        private static readonly StudentsGenerator StudentsGenerator = new StudentsGenerator();
+        private static readonly WorkerGenerator WorkerGenerator = new WorkerGenerator();
 
         private static void Main(string[] args)
         {
-            var students = new List<Student>();
-            for (var i = 0; i < 10; i++)
-            {
-                var someGuy = new Student("Robot", "Number: " + (i + 1), (uint)Rnd.Next(1, 10));
-                students.Add(someGuy);
-            }
+            ConsoleMio.PrintHeading("OOP Principles - Part 1 - Students And Workers");
 
-            students = students
-                .OrderBy(s => s.Grade)
-                .ToList();
+            var students = StudentsGenerator.Generate(10)
+                .OrderBy(s => s.Grade);
 
-            foreach (var s in students)
-            {
-                Console.WriteLine(s);
-            }
+            ConsoleMio.WriteLine("Students by grade: \n", Info);
+            PrintPeople(students);
 
-            Console.WriteLine();
+            var workers = WorkerGenerator.Generate(10, 11)
+                .OrderByDescending(w => w.MoneyPerHour());
 
-            var workers = new List<Worker>();
-            for (var i = 0; i < 10; i++)
-            {
-                var workingJoe = new Worker("Andro", "Count: " + (i + 1), Rnd.Next(15, 1000), (uint)Rnd.Next(1, 8));
-                workers.Add(workingJoe);
-            }
-
-            workers = workers
-                .OrderByDescending(w => w.MoneyPerHour())
-                .ToList();
-
-            foreach (var w in workers)
-            {
-                Console.WriteLine(w);
-            }
-
-            Console.WriteLine();
+            ConsoleMio.WriteLine("Workerks by income: \n", Info);
+            PrintPeople(workers);
 
             var people = new List<Human>(students);
             people.AddRange(workers);
@@ -54,10 +39,24 @@
                 .ThenBy(p => p.LastName)
                 .ToList();
 
-            foreach (var p in people)
+            ConsoleMio.WriteLine("People by name: \n", Info);
+            PrintPeople(people);
+        }
+
+        private static void PrintPeople(IEnumerable<Human> people)
+        {
+            bool odd = true;
+
+            foreach (var human in people)
             {
-                Console.WriteLine(p);
+                ConsoleMio
+                    .WriteLine(human, odd ? Result : Info);
+
+                odd = !odd;
             }
+
+            ConsoleMio.WriteLine();
+            ConsoleMio.PromptToContinue(Info);
         }
     }
 }

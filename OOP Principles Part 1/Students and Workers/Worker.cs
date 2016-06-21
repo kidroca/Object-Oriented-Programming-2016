@@ -1,23 +1,19 @@
 ﻿namespace Telerik.Homeworks.OOP.Principles
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class Worker : Human
     {
-        public const uint MaxHoursPerDay = 8;
-
-        public const uint WorkDaysPerWeek = 5;
+        public const int MaxHoursPerDay = 8;
+        public const int WorkDaysPerWeek = 5;
+        public const decimal MinimalSalary = 400;
+        public const decimal MaximalSalary = 40000;
 
         private decimal weekSalary;
+        private int workHoursPerDay;
 
-        private uint workHoursPerDay;
-
-        public Worker(string fname, string lname, decimal weekSalary, uint hours)
-            : base(fname, lname)
+        public Worker(string fitstName, string lastName, decimal weekSalary, int hours)
+            : base(fitstName, lastName)
         {
             this.WeekSalary = weekSalary;
             this.WorkHoursPerDay = hours;
@@ -32,12 +28,16 @@
 
             set
             {
-                // validate
+                if (value < MinimalSalary)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "This man's boss is an animal");
+                }
+
                 this.weekSalary = value;
             }
         }
 
-        public uint WorkHoursPerDay
+        public int WorkHoursPerDay
         {
             get
             {
@@ -48,7 +48,7 @@
             {
                 if (value > MaxHoursPerDay)
                 {
-                    throw new ArgumentOutOfRangeException("Let this man have a break");
+                    throw new ArgumentOutOfRangeException(nameof(value), "Give this man a break!");
                 }
 
                 this.workHoursPerDay = value;
@@ -58,7 +58,6 @@
         public decimal MoneyPerHour()
         {
             decimal moneyPerDay = this.weekSalary / WorkDaysPerWeek;
-
             decimal moneyPerHour = moneyPerDay / this.workHoursPerDay;
 
             return moneyPerHour;
@@ -66,7 +65,7 @@
 
         public override string ToString()
         {
-            return string.Format(base.ToString() + "\r\nMoney Per Hour: '{0}'", this.MoneyPerHour());
+            return string.Format(base.ToString() + "\r\nMoney Per Hour: '{0:F}'", this.MoneyPerHour());
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace Telerik.Homeworks.OOP.Principles
 {
     using System.Collections.Generic;
+    using Validators;
 
     public class School
     {
@@ -21,7 +22,7 @@
 
             set
             {
-                this.name = Validator.Validator.ValidateName(value);
+                this.name = Validator.ValidateName(value);
             }
         }
 

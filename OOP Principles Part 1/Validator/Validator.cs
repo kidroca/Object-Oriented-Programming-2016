@@ -1,12 +1,11 @@
-﻿namespace Telerik.Homeworks.OOP.Principles.Validator
+﻿namespace Telerik.Homeworks.OOP.Principles.Validators
 {
     using System;
 
     public static class Validator
     {
-        private const int MinNameLength = 3;
-
-        private const int MaxNameLength = 20;
+        public const int MinNameLength = 3;
+        public const int MaxNameLength = 20;
 
         public static string ValidateName(string value)
         {
@@ -28,6 +27,16 @@
             }
 
             return value;
+        }
+
+        public static int ValidateNumber(int number, int minValue, int maxValue)
+        {
+            if (number < minValue || maxValue < number)
+            {
+                throw new ArgumentOutOfRangeException(nameof(number), "The number value is invalid");
+            }
+
+            return number;
         }
     }
 }

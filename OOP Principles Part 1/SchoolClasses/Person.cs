@@ -1,5 +1,7 @@
 ﻿namespace Telerik.Homeworks.OOP.Principles
 {
+    using Validators;
+
     public abstract class Person
     {
         private string firstName;
@@ -21,7 +23,7 @@
 
             protected set
             {
-                string name = Validator.Validator.ValidateName(value);
+                string name = Validator.ValidateName(value);
 
                 this.firstName = name;
             }
@@ -36,7 +38,7 @@
 
             protected set
             {
-                string name = Validator.Validator.ValidateName(value);
+                string name = Validator.ValidateName(value);
 
                 this.lastName = name;
             }

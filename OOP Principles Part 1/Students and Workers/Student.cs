@@ -1,22 +1,26 @@
 ﻿namespace Telerik.Homeworks.OOP.Principles
 {
+    using Validators;
+
     public class Student : Human
     {
+        public const int MinGrade = 1;
+        public const int MaxGrade = 10;
 
-        private uint grade;
+        private int grade;
 
-        public Student(string fname, string lname)
-            : base(fname, lname)
+        public Student(string fitstName, string lastName)
+            : base(fitstName, lastName)
         {
         }
 
-        public Student(string fname, string lname, uint grade)
-            : this(fname, lname)
+        public Student(string fitstName, string lastName, int grade)
+            : this(fitstName, lastName)
         {
             this.Grade = grade;
         }
 
-        public uint Grade
+        public int Grade
         {
             get
             {
@@ -25,8 +29,7 @@
 
             set
             {
-                // validate
-                this.grade = value;
+                this.grade = Validator.ValidateNumber(value, MinGrade, MaxGrade);
             }
         }
 

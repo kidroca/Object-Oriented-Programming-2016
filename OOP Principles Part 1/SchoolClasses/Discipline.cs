@@ -1,5 +1,7 @@
 ﻿namespace Telerik.Homeworks.OOP.Principles
 {
+    using Validators;
+
     public class Discipline
     {
         private string name;
@@ -18,7 +20,7 @@
 
             set
             {
-                Validator.Validator.ValidateName(value);
+                Validator.ValidateName(value);
 
                 this.name = value;
             }
