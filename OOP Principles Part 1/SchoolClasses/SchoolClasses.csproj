@@ -7,7 +7,7 @@
     <ProjectGuid>{001D2EF2-9862-4E5F-B6C0-C45F65164A18}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Telerik.Homeworks.OOP.Principles</RootNamespace>
+    <RootNamespace>Telerik.Homeworks.OOP.Principles.SchoolClasses</RootNamespace>
     <AssemblyName>SchoolClasses</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

@@ -1,4 +1,4 @@
-﻿namespace Telerik.Homeworks.OOP.Principles
+﻿namespace Telerik.Homeworks.OOP.Principles.SchoolClasses
 {
     public class Comment
     {

@@ -7,7 +7,7 @@
     <ProjectGuid>{6C1E880C-7B1F-4B40-ABC9-B94BA74FC6F2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Telerik.Homeworks.OOP.Principles.Validators</RootNamespace>
+    <RootNamespace>Telerik.Homeworks.OOP.Principles.Validation</RootNamespace>
     <AssemblyName>Validator</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

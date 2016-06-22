@@ -1,10 +1,10 @@
-﻿namespace Telerik.Homeworks.OOP.Principles
+﻿namespace Telerik.Homeworks.OOP.Principles.StudentsAndWorkers
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using ConsoleMio.ConsoleEnhancements;
-    using Generators;
+    using StudentsAndWorkers.Generators;
 
     internal class StudentWorkerProgram
     {

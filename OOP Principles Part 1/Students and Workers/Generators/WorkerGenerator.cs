@@ -1,4 +1,4 @@
-﻿namespace Telerik.Homeworks.OOP.Principles.Generators
+﻿namespace Telerik.Homeworks.OOP.Principles.StudentsAndWorkers.Generators
 {
     public class WorkerGenerator : SimpleGenerator<Worker>
     {

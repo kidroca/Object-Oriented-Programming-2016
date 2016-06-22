@@ -1,4 +1,4 @@
-﻿namespace Telerik.Homeworks.OOP.Principles.Validators
+﻿namespace Telerik.Homeworks.OOP.Principles.Validation
 {
     using System;
 

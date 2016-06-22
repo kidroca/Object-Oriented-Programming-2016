@@ -1,4 +1,4 @@
-﻿namespace Telerik.Homeworks.OOP.Principles.Generators
+﻿namespace Telerik.Homeworks.OOP.Principles.StudentsAndWorkers.Generators
 {
     using System;
     using System.Collections.Generic;

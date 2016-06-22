@@ -7,7 +7,7 @@
     <ProjectGuid>{569B2493-93B0-4CA5-8996-2E4FF1E72740}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Animals</RootNamespace>
+    <RootNamespace>Telerik.Homeworks.OOP.Principles.Animals</RootNamespace>
     <AssemblyName>Animals</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -44,8 +44,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Animal.cs" />
+    <Compile Include="Cat.cs" />
+    <Compile Include="Dog.cs" />
+    <Compile Include="Frog.cs" />
+    <Compile Include="Gender.cs" />
+    <Compile Include="ISound.cs" />
+    <Compile Include="Kitten.cs" />
+    <Compile Include="AnimalProgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tomcat.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -55,6 +63,12 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Validator\Validator.csproj">
+      <Project>{6c1e880c-7b1f-4b40-abc9-b94ba74fc6f2}</Project>
+      <Name>Validator</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

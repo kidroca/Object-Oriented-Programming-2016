@@ -1,6 +1,6 @@
-﻿namespace Telerik.Homeworks.OOP.Principles
+﻿namespace Telerik.Homeworks.OOP.Principles.SchoolClasses
 {
-    using Validators;
+    using Validation;
 
     public class Discipline
     {

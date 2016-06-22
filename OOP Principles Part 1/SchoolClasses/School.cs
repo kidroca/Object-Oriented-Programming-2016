@@ -1,7 +1,7 @@
-﻿namespace Telerik.Homeworks.OOP.Principles
+﻿namespace Telerik.Homeworks.OOP.Principles.SchoolClasses
 {
     using System.Collections.Generic;
-    using Validators;
+    using Validation;
 
     public class School
     {

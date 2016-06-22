@@ -1,6 +1,6 @@
-﻿namespace Telerik.Homeworks.OOP.Principles
+﻿namespace Telerik.Homeworks.OOP.Principles.StudentsAndWorkers
 {
-    using Validators;
+    using Validation;
 
     public abstract class Human
     {
