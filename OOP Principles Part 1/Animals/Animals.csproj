@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ConsoleMio, Version=1.0.6016.39571, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ConsoleMio.1.0.6016.39571\lib\net40\ConsoleMio.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

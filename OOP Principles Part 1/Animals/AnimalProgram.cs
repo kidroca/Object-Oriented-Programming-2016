@@ -3,10 +3,42 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using ConsoleMio.ConsoleEnhancements;
 
     internal class AnimalProgram
     {
+        private const ConsoleColor Info = ConsoleColor.Blue;
+        private const ConsoleColor Result = ConsoleColor.DarkRed;
+        private static readonly string Dash = new string('-', 50);
+
+        private static readonly ConsoleMio ConsoleMio = new ConsoleMio();
+
         private static void Main()
+        {
+            ConsoleMio.PrintHeading("OOP Principles - Part 1 - Animals");
+
+            var animals = GenerateAnimals();
+
+            PrintAnimals(animals);
+
+            var averageAges = GetAverageAges(animals);
+
+            ConsoleMio.PromptToContinue(Info);
+            ConsoleMio.WriteLine("Average Ages:", Info)
+                      .WriteLine(Dash, Info);
+
+            foreach (var key in averageAges.Keys)
+            {
+                ConsoleMio.Write(key, Result)
+                          .Write(" average age: ", Info)
+                          .FormatLine("{0:F}", Result, averageAges[key]);
+            }
+
+            ConsoleMio.WriteLine(Dash, Info)
+                      .WriteLine();
+        }
+
+        private static IList<Animal> GenerateAnimals()
         {
             var animals = new List<Animal>()
             {
@@ -15,7 +47,7 @@
                 new Tomcat("Petko", 5),
                 new Frog("Petra", Gender.Female, 3),
                 new Dog("Penio", Gender.Male, 23),
-                new Kitten("Paca", 3),
+                new Kitten("Paca", 1),
                 new Tomcat("Paco", 6),
                 new Frog("Panko", Gender.Male, 5),
                 new Dog("Penka", Gender.Female, 10),
@@ -24,14 +56,7 @@
                 new Frog("Petar", Gender.Male, 2)
             };
 
-            PrintAnimals(animals);
-
-            var averageAges = GetAverageAges(animals);
-
-            foreach (var key in averageAges.Keys)
-            {
-                Console.WriteLine($"{key} average age: {averageAges[key] :F}");
-            }
+            return animals;
         }
 
         private static IDictionary<string, double> GetAverageAges(IEnumerable<Animal> animals)
@@ -47,11 +72,16 @@
 
         private static void PrintAnimals(IEnumerable<Animal> animals)
         {
+            ConsoleMio.WriteLine("Animals: ", Info)
+                      .WriteLine();
+
             foreach (var animal in animals)
             {
-                Console.WriteLine(animal.Speak());
-                Console.WriteLine(new string('-', 50));
+                ConsoleMio.WriteLine(animal.Speak(), Result)
+                          .WriteLine(Dash, Info);
             }
+
+            ConsoleMio.WriteLine();
         }
     }
 }

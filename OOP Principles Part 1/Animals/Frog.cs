@@ -9,7 +9,7 @@
 
         public override string Speak()
         {
-            return $"Rebet, rebet, I'm {this.Name} the frog and I'm {this.Age} {this.YearsWord} old";
+            return $"Ribbit, ribbit, I'm {this.Name} the frog and I'm {this.Age} {this.YearsWord} old";
         }
     }
 }
