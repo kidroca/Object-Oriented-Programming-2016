@@ -4,7 +4,7 @@
     using System.Text;
     using Balances;
     using Customers;
-    
+
     public class Loan : Account
     {
         public Loan(Customer customer, Balance initialBallance)

@@ -18,7 +18,7 @@
 
             bestBank.CreateNewLoan(joro, 1000);
 
-            // Implement Account.InterestRate 
+            // Implement Account.InterestRate
             // Implement when the Loan Mortage ends
             // Validations and encapsulation
 

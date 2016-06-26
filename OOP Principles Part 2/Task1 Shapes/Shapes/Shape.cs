@@ -8,27 +8,27 @@
 
         private double height;
 
-        public Shape(double width, double height)
+        protected Shape(double width, double height)
         {
             this.Width = width;
             this.Height = height;
         }
 
-        public virtual double Width
+        public double Width
         {
             get
             {
                 return this.width;
-            } 
+            }
 
             protected set
             {
                 this.ValidateSide(value);
                 this.width = value;
             }
-        }   
+        }
 
-        public virtual double Height
+        public double Height
         {
             get
             {
@@ -48,7 +48,8 @@
         {
             if (value <= 0)
             {
-                throw new ArgumentOutOfRangeException("Shape sides must be greater than zero");
+                throw new ArgumentOutOfRangeException(
+                    nameof(value), "Shape sides must be greater than zero");
             }
         }
     }
