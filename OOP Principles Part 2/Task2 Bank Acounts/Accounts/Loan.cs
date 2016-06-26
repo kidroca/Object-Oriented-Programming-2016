@@ -2,17 +2,18 @@
 {
     using System;
     using System.Text;
-    using Balances;
-    using Customers;
+    using Balances.Interfaces;
+    using Customers.Interfaces;
 
+    [Serializable]
     public class Loan : Account
     {
-        public Loan(Customer customer, Balance initialBallance)
-            : base(customer, initialBallance)
+        public Loan(ICustomer customer, IBalance initialBalance, decimal interestRate)
+            : base(customer, initialBalance, interestRate)
         {
         }
 
-        public override decimal GetInterenstAmountFor(int months)
+        public override decimal GetInterestAmountFor(int months)
         {
             return this.Customer.CalculateLoanInterests(months, this.InterestRate);
         }

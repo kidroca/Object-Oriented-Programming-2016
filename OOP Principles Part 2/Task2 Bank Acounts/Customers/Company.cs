@@ -1,12 +1,13 @@
-﻿using System;
-
-namespace Telerik.Homeworks.OOP.Principles.Banks.Customers
+﻿namespace Telerik.Homeworks.OOP.Principles.Banks.Customers
 {
+    using System;
+
+    [Serializable]
     public class Company : Customer
     {
         public const decimal MortageInterestDecrease = 0.5m;
 
-        public const int MortageInteresetDecreaseDuration = 12;
+        public const int MortageInterestDecreaseDuration = 12;
 
         public const int NoLoanInterestMonths = 2;
 
@@ -17,26 +18,31 @@ namespace Telerik.Homeworks.OOP.Principles.Banks.Customers
 
         public override decimal CalculateLoanInterests(int months, decimal interestRate)
         {
-            return base.CalculateInterests(months, interestRate, NoLoanInterestMonths);
+            return this.CalculateInterests(months, interestRate, NoLoanInterestMonths);
         }
 
         public override decimal CalculateMortageInterests(int months, decimal interestRate)
         {
             decimal reducedInterest = interestRate * MortageInterestDecrease;
 
-            if (months <= MortageInteresetDecreaseDuration)
+            if (months <= MortageInterestDecreaseDuration)
             {
-                return base.CalculateInterests(months, reducedInterest);
+                return this.CalculateInterests(months, reducedInterest);
             }
             else
             {
-                decimal interests = base.CalculateInterests(MortageInteresetDecreaseDuration, reducedInterest, 0);
-                int remainingMonths = months - MortageInteresetDecreaseDuration;
+                decimal interests = this.CalculateInterests(MortageInterestDecreaseDuration, reducedInterest, 0);
+                int remainingMonths = months - MortageInterestDecreaseDuration;
 
-                interests += base.CalculateInterests(remainingMonths, interestRate);
+                interests += this.CalculateInterests(remainingMonths, interestRate);
 
                 return interests;
             }
+        }
+
+        public override string ToString()
+        {
+            return $"Company Owner: {base.ToString()}";
         }
     }
 }

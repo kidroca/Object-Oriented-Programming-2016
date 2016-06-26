@@ -1,29 +1,33 @@
 ﻿namespace Telerik.Homeworks.OOP.Principles.Banks.Accounts
 {
     using System;
-    using Balances;
-    using Customers;
+    using Balances.Interfaces;
+    using Customers.Interfaces;
+    using Interfaces;
 
-    public abstract class Account
+    [Serializable]
+    public abstract class Account : IAccount
     {
-        public Account(Customer customer, Balance initialBallance)
+        protected Account(ICustomer customer, IBalance initialBalance, decimal interestRate)
         {
             this.Customer = customer;
-            this.Balance = initialBallance;
+            this.Balance = initialBalance;
+            this.InterestRate = interestRate;
         }
 
-        public Customer Customer { get; protected set; }
+        public ICustomer Customer { get; protected set; }
 
-        public int InterestRate { get; protected set; }
+        public decimal InterestRate { get; protected set; }
 
-        public Balance Balance { get; protected set; }
+        public IBalance Balance { get; protected set; }
 
         public override string ToString()
         {
-            return string.Format(
-                "Holder: {0}\n Interest Rate: {1}",
-                this.Customer.FirstName + ' ' + this.Customer.LastName,
-                this.InterestRate);
+            return
+                $"Holder: {this.Customer.FirstName + ' ' + this.Customer.LastName}\n" +
+                $"Interest Rate: {this.InterestRate}\n" +
+                $"Ballance: {this.Balance.Funds:F}\n" +
+                $"Interest for 12 months: {this.GetInterestAmountFor(12)}";
         }
 
         public virtual void MakeDeposit(decimal amount)
@@ -42,6 +46,6 @@
             }
         }
 
-        public abstract decimal GetInterenstAmountFor(int months);
+        public abstract decimal GetInterestAmountFor(int months);
     }
 }

@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ConsoleMio, Version=1.0.6021.35514, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ConsoleMio.1.0.6021.35514\lib\net40\ConsoleMio.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,11 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BankOperationsEntry.cs" />
+    <Compile Include="StartUp.cs" />
+    <Compile Include="BinaryHandler.cs" />
+    <Compile Include="Colors.cs" />
+    <Compile Include="CommandInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Asignment.md" />
+    <Content Include="Database">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

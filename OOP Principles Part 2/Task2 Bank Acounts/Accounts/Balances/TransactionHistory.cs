@@ -4,14 +4,19 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+    using Interfaces;
 
-    public class TransactionHistory : IEnumerable<decimal>
+    [Serializable]
+    public class TransactionHistory : ITransactionHistory
     {
-        private Dictionary<DateTime, decimal> history = new Dictionary<DateTime, decimal>();
+        private readonly Dictionary<DateTime, decimal> history;
 
         public TransactionHistory()
         {
+            this.history = new Dictionary<DateTime, decimal>();
         }
+
+        public int Length => this.history.Count;
 
         public decimal this[DateTime date]
         {
@@ -23,14 +28,26 @@
                 }
                 else
                 {
-                    throw new ArgumentException("No history on the given date");
+                    return 0;
                 }
             }
         }
 
-        public void Add(decimal amount, DateTime date = new DateTime())
+        public void Add(decimal amount, DateTime date)
         {
-            this.history[date] = amount;
+            if (this.history.ContainsKey(date))
+            {
+                this.history[date] += amount;
+            }
+            else
+            {
+                this.history[date] = amount;
+            }
+        }
+
+        public void Add(decimal amount)
+        {
+            this.Add(amount, DateTime.Now);
         }
 
         public List<DateTime> GetDates()
@@ -38,14 +55,6 @@
             return this.history
                     .Keys
                     .ToList();
-        }
-
-        public int Length
-        {
-            get
-            {
-                return this.history.Count;
-            }
         }
 
         public IEnumerator<decimal> GetEnumerator()

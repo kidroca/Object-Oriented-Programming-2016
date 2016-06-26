@@ -43,10 +43,14 @@
   <ItemGroup>
     <Compile Include="Accounts\Account.cs" />
     <Compile Include="Accounts\Balances\Balance.cs" />
+    <Compile Include="Accounts\Balances\Interfaces\IBalance.cs" />
+    <Compile Include="Accounts\Balances\Interfaces\ITransactionHistory.cs" />
+    <Compile Include="Accounts\Interfaces\IAccount.cs" />
     <Compile Include="Bank.cs" />
     <Compile Include="Customers\Company.cs" />
     <Compile Include="Customers\Customer.cs" />
     <Compile Include="Accounts\Deposit.cs" />
+    <Compile Include="Customers\Interfaces\ICustomer.cs" />
     <Compile Include="Customers\Individual.cs" />
     <Compile Include="Accounts\Loan.cs" />
     <Compile Include="Accounts\Mortage.cs" />
@@ -62,6 +66,7 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,7 +1,6 @@
 ﻿namespace Telerik.Homeworks.OOP.Principles
 {
     using System;
-    using System.Linq;
     using System.Threading;
     using ConsoleMio.ConsoleEnhancements;
     using Shapes;
@@ -67,48 +66,12 @@
 
         private static double[] ReadInput(string prompt, int parametersCount)
         {
-            double[] args = null;
-            int initalTop = Console.CursorTop;
-            int rows = 0;
             string subject = parametersCount == 1
                 ? "number"
                 : $"{parametersCount} numbers on the same line separated by space";
 
-            while (args == null)
-            {
-                ConsoleMio.ClearRows(initalTop, rows);
-                ConsoleMio.Write(prompt, Info);
-                try
-                {
-                    args = ConsoleMio.ReadLine(Blue)
-                        .Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(double.Parse)
-                        .ToArray();
-
-                    if (args.Length != parametersCount)
-                    {
-                        args = null;
-                        throw new ApplicationException(
-                            $"You must provide {parametersCount} parameters");
-                    }
-                }
-                catch (Exception e) when (e is ArgumentNullException ||
-                                          e is FormatException ||
-                                          e is OverflowException)
-                {
-                    ConsoleMio
-                        .WriteLine("The input was not in the correct format", Warning)
-                        .WriteLine($"Enter the {subject}", Warning);
-                    ConsoleMio.PromptToContinue(Warning);
-                }
-                catch (ApplicationException e)
-                {
-                    ConsoleMio.WriteLine(e.Message, Warning);
-                    ConsoleMio.PromptToContinue(Warning);
-                }
-
-                rows = Console.CursorTop - initalTop;
-            }
+            double[] args = ConsoleMio.ReadInput(
+                    prompt, new[] { " " }, double.Parse, parametersCount, Info, Result, Warning);
 
             return args;
         }

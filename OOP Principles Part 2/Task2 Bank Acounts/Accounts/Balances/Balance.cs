@@ -1,10 +1,14 @@
 ﻿namespace Telerik.Homeworks.OOP.Principles.Banks.Accounts.Balances
 {
-    public class Balance
-    {
-        private decimal funds;
+    using System;
+    using Interfaces;
 
-        private TransactionHistory transactionHistory;
+    [Serializable]
+    public class Balance : IBalance
+    {
+        private readonly TransactionHistory transactionHistory;
+
+        private decimal funds;
 
         public Balance()
         {
