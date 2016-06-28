@@ -1,8 +1,12 @@
 ﻿namespace Telerik.Homeworks.OOP.Principles.Banks.Customers
 {
-    public abstract class Customer
+    using System;
+    using Interfaces;
+
+    [Serializable]
+    public abstract class Customer : ICustomer
     {
-        public Customer(string firstName, string lastName)
+        protected Customer(string firstName, string lastName)
         {
             this.FirstName = firstName;
             this.LastName = lastName;
@@ -14,21 +18,22 @@
 
         public override string ToString()
         {
-            return string.Format("Customer:\nFirst Name: {0} \nLast Name: {1}", this.FirstName, this.LastName);
+            return $"{this.FirstName} {this.LastName}";
         }
 
         public abstract decimal CalculateLoanInterests(int months, decimal interestRate);
 
         public abstract decimal CalculateMortageInterests(int months, decimal interestRate);
 
-        protected decimal CalculateInterests(int months, decimal interestRate, int NoInterestMonths)
+        protected decimal CalculateInterests(
+            int months, decimal interestRate, int noInterestMonths)
         {
-            if (months <= NoInterestMonths)
+            if (months <= noInterestMonths)
             {
                 return 0;
             }
 
-            decimal interests = (months - NoInterestMonths) * interestRate;
+            decimal interests = (months - noInterestMonths) * interestRate;
 
             return interests;
         }

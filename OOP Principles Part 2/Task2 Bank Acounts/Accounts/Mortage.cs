@@ -1,16 +1,18 @@
 ﻿namespace Telerik.Homeworks.OOP.Principles.Banks.Accounts
 {
-    using Balances;
-    using Customers;
+    using System;
+    using Balances.Interfaces;
+    using Customers.Interfaces;
 
+    [Serializable]
     public class Mortage : Account
     {
-        public Mortage(Customer customer, Balance initialBalance)
-            : base(customer, initialBalance)
+        public Mortage(ICustomer customer, IBalance initialBalance, decimal interestRate)
+            : base(customer, initialBalance, interestRate)
         {
         }
 
-        public override decimal GetInterenstAmountFor(int months)
+        public override decimal GetInterestAmountFor(int months)
         {
             return this.Customer.CalculateMortageInterests(months, this.InterestRate);
         }
